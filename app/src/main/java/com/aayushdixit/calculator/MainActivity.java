@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private Button divide;
     private Button add;
     private Button subtract;
+    private Button clear;
     private TextView output;
     private EditText inputOne;
     private EditText inputTwo;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         inputOne = (EditText) findViewById(R.id.editText);
         inputTwo = (EditText) findViewById(R.id.editText2);
         prompt = (TextView) findViewById(R.id.textView);
+        clear = (Button) findViewById(R.id.button5);
 
 
         View.OnClickListener onClickListenerOne = new View.OnClickListener() {
@@ -103,10 +105,23 @@ public class MainActivity extends AppCompatActivity {
 
             }
         };
+
+        View.OnClickListener onClickListenerFive = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                x = 0;
+                y = 0;
+                inputOne.setText("");
+                inputTwo.setText("");
+                output.setText("Output");
+                inputOne.requestFocus();
+            }
+        };
         multiply.setOnClickListener(onClickListenerOne);
         divide.setOnClickListener(onClickListenerTwo);
         add.setOnClickListener(onClickListenerThree);
         subtract.setOnClickListener(onClickListenerFour);
+        clear.setOnClickListener(onClickListenerFive);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -137,11 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            x = 0;
-            y = 0;
-            inputOne.setText("");
-            inputTwo.setText("");
-            inputOne.requestFocus();
+
             return true;
         }
 
