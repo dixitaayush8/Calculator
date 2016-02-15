@@ -9,7 +9,6 @@ import android.text.Editable;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
     private Button divide;
     private Button add;
     private Button subtract;
-    private Button clear;
     private TextView output;
     private EditText inputOne;
     private EditText inputTwo;
@@ -39,10 +37,9 @@ public class MainActivity extends AppCompatActivity {
         inputOne = (EditText) findViewById(R.id.editText);
         inputTwo = (EditText) findViewById(R.id.editText2);
         prompt = (TextView) findViewById(R.id.textView);
-        clear = (Button) findViewById(R.id.button5);
 
 
-        OnClickListener onClickListenerOne = new OnClickListener() {
+        View.OnClickListener onClickListenerOne = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if ((inputOne.getText().toString().equals("") || inputTwo.getText().toString().equals("")) && (x == 0 || y == 0)) {
@@ -57,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        OnClickListener onClickListenerTwo = new OnClickListener() {
+        View.OnClickListener onClickListenerTwo = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if ((inputOne.getText().toString().equals("") || inputTwo.getText().toString().equals("")) && (x == 0 || y == 0)) {
@@ -77,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        OnClickListener onClickListenerThree = new OnClickListener() {
+        View.OnClickListener onClickListenerThree = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if ((inputOne.getText().toString().equals("") || inputTwo.getText().toString().equals("")) && (x == 0 || y == 0)) {
@@ -92,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        OnClickListener onClickListenerFour = new OnClickListener() {
+        View.OnClickListener onClickListenerFour = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if ((inputOne.getText().toString().equals("") || inputTwo.getText().toString().equals("")) && (x == 0 || y == 0)) {
@@ -106,24 +103,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         };
-
-        View.OnClickListener onClickListenerFive = new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                x = 0;
-                y = 0;
-                inputOne.setText("");
-                inputTwo.setText("");
-                output.setText("Output");
-                inputOne.requestFocus();
-            }
-        };
         multiply.setOnClickListener(onClickListenerOne);
         divide.setOnClickListener(onClickListenerTwo);
         add.setOnClickListener(onClickListenerThree);
         subtract.setOnClickListener(onClickListenerFour);
-        clear.setOnClickListener(onClickListenerFive);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -154,7 +137,11 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-
+            x = 0;
+            y = 0;
+            inputOne.setText("");
+            inputTwo.setText("");
+            inputOne.requestFocus();
             return true;
         }
 
